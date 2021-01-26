@@ -5,6 +5,7 @@ import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
 import QuizBackground from '../src/components/QuizBackground';
 import MetaTags from '../src/components/Metatags';
+import QuizLogo from '../src/components/QuizLogo';
 
 const QuizContainer = styled.div`
   width: 100%;
@@ -20,10 +21,12 @@ const QuizContainer = styled.div`
 
 
 export default function Home() {
-  return (
-    <QuizBackground backgroundImage={db.bg}>
-      <MetaTags image={db.bg} />
+  return (    
+    <>
+    <MetaTags image={db.bg} />
+    <QuizBackground backgroundImage={db.bg}>          
       <QuizContainer>
+        <QuizLogo />
         <Widget>
           <Widget.Header>
             <h1>The Mandalorian</h1>
@@ -44,6 +47,6 @@ export default function Home() {
       </QuizContainer>
       <GitHubCorner projectUrl="https://github.com/italocarlo06" />
     </QuizBackground>
-    
+    </>    
   );
 }

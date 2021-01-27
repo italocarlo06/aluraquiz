@@ -50,8 +50,8 @@ export default function Home() {
           </Widget>
           <Widget>
             <Widget.Container>
-              <h1>Quiz</h1>
-              <p> Teste </p>
+              <h1>{db.title}</h1>
+              <p>{db.description}</p>
             </Widget.Container>
           </Widget>
           <Footer />

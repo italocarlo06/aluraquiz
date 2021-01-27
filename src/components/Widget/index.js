@@ -6,7 +6,7 @@ const Widget = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.primary};  
   background-color:  ${({ theme }) => theme.colors.mainBg};
   border-radius: 4px;
-  overflow: hidden;
+  overflow: hidden;  
 
   h1,h2,h3{
     font-size: 16px;
@@ -27,7 +27,7 @@ Widget.Header = styled.header`
   justify-content: flex-start;
   align-items: center;
   padding: 18px 32px;
-  background-color: ${ ({theme}) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.primary};
 
   *{
     margin: 0;
@@ -35,6 +35,7 @@ Widget.Header = styled.header`
 `;
 
 Widget.Container = styled.div`
+  
   padding: 24px 32px 32px 32px;
   & > *:first-child{
     margin-top: 0;
@@ -49,8 +50,11 @@ Widget.Container = styled.div`
     padding: 0;
   }
 
-
 `;
 
+Widget.Container.Form = styled.form`
+ display: flex;
+ flex-direction: row; 
+`;
 
 export default Widget;

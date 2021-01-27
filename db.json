@@ -3,27 +3,90 @@
   "bg": "https://i.redd.it/l2s48ewgfk741.jpg",
   "title": "Quiz CSS da Alura",
   "description": "Teste os seus conhecimentos sobre CSS e vamos ver quantos layouts você vai deixar de quebrar",
-  "questions": [
+  "questions": [    
     {
-      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-      "title": "Como fazer um seletor por id via CSS?",
+      "image": "https://cafecomnerd.com.br/wp-content/uploads/2020/06/The-Mandalorian-Quiz-Primeira-Temporada-em-que-epoca-se-passa-a-serie.jpg",
+      "title": "Em que época se passa a série?",
       "description": "Essa é pra aquecer",
-      "answer": 2,
+      "answer": 1,
       "alternatives": [
-        ".elemento",
-        "*elemento",
-        "#elemento",
-        "%elemento"
+        "Se passa cinco anos após o Retorno de Jedi",
+        "Se passa cinco anos após a Vingança dos Siths",        
+        "Se passa cinco anos após Rogue One",
+        "Se passa cinco anos após O Império Contra ataca"
       ]
     },
     {
-      "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-      "title": "Como fazer um background gradiente com css?",
-      "description": "Faz tempo em haha",
+      "image": "https://cafecomnerd.com.br/wp-content/uploads/2020/06/The-Mandalorian-Primeira-Temporada-ator-de-Game-of-Thrones.jpg",
+      "title": "Que ator interpreta Mando, o Mandaloriano?",
+      "description": "",
+      "answer": 1,
+      "alternatives": [
+        "Oberyn Martell",
+        "Pedro Pascal",
+        "Dave York",
+        "Maxwell Lord"        
+      ]
+    },    
+    {
+      "image": "https://cafecomnerd.com.br/wp-content/uploads/2020/06/The-Mandalorian-Primeira-Temporada-Nave-de-Mando-o-Mandaloriano.jpg",
+      "title": "Qual o nome da nave do Mando?",
+      "description": "",
+      "answer": 2,
+      "alternatives": [
+        "Hammerhead Corvette",
+        "Radiant VII",
+        "Razor Crest",
+        "Star Crest"        
+      ]
+    },    
+    
+    {
+      "image": "https://cafecomnerd.com.br/wp-content/uploads/2020/06/The-Mandalorian-Primeira-Temporada-NDroid-Assassino.jpg",
+      "title": "Qual o modelo do droid assassino?",
+      "description": "",
+      "answer": 2,
+      "alternatives": [
+        "Droid Assassino IG 88",
+        "Droid Assassino IG 58",
+        "Droid Assassino IG 11",
+        "Droid Assassino IG 17"
+      ]
+    },
+    {
+      "image": "https://cafecomnerd.com.br/wp-content/uploads/2020/06/The-Mandalorian-Primeira-Temporada-Prisioneiro-Carbonite.jpg",
+      "title": "Qual o nome da espécie do alien azul que Mando está capturando no bar no inicio do primeiro episodio?",
+      "description": "",
       "answer": 0,
       "alternatives": [
-         "background: linear-gradient(#e66465, #9198e5);",
-         "background: gradient(#e66465, #9198e5);"
+         "Fledgling Mythrol",
+         "Devarorianos",
+         "Yautja",
+         "Wookie"
+      ]
+    },
+    {
+      "image": "https://cafecomnerd.com.br/wp-content/uploads/2020/06/The-Mandalorian-Primeira-Temporada-Ugnaughts-interpretado-por-Nick-Nolte.jpg",
+      "title": "Qual o nome do personagem da raça Ugnaughts interpretado por Nick Nolte?",
+      "description": "",
+      "answer": 3,
+      "alternatives": [         
+         "Ranzar",
+         "Mayfiel",
+         "Burg",
+         "Kuiil"
+      ]
+    },
+    {
+      "image": "https://cafecomnerd.com.br/wp-content/uploads/2020/06/The-Mandalorian-Primeira-Temporada-Baby-Yoda.jpg",
+      "title": "Quantos anos tem o Baby Yoda?",
+      "description": "",
+      "answer": 2,
+      "alternatives": [
+         "30",
+         "70",
+         "50",
+         "75"
       ]
     }
   ],

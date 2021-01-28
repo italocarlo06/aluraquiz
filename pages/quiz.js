@@ -19,7 +19,15 @@ function LoadingWidget() {
       </Widget.Header>
 
       <Widget.Container>
-        [Desafio do Loading]
+        <img
+          alt="Descrição"
+          style={{
+            width: '100%',
+            height: '150px',
+            objectFit: 'cover',
+          }}
+          src="https://i.pinimg.com/originals/1b/58/77/1b58772e23bb5b761ded9aa1d1e1d7e4.gif"
+        />
       </Widget.Container>
     </Widget>
   );

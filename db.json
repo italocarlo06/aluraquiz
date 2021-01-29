@@ -8,7 +8,7 @@
       "image": "https://cafecomnerd.com.br/wp-content/uploads/2020/06/The-Mandalorian-Quiz-Primeira-Temporada-em-que-epoca-se-passa-a-serie.jpg",
       "title": "Em que época se passa a série?",
       "description": "Essa é pra aquecer",
-      "answer": 1,
+      "answer": 0,
       "alternatives": [
         "Se passa cinco anos após o Retorno de Jedi",
         "Se passa cinco anos após a Vingança dos Siths",        
@@ -99,7 +99,7 @@
       "secondary": "#ff8a65",
       "mainBg": "#171B35",
       "contrastText": "#FFFFFF",
-      "wrong": "#FF5722",
+      "wrong": "#ff1744",
       "success": "#4CAF50"
     },
     "borderRadius": "4px"

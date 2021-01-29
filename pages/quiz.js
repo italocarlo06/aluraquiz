@@ -1,15 +1,46 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 
 import QuizBackground from '../src/components/QuizBackground';
 import QuizLogo from '../src/components/QuizLogo';
 import QuizContainer from '../src/components/QuizContainer';
 import Button from '../src/components/Button';
 import GitHubCorner from '../src/components/GitHubCorner';
+import AlternativesForm from '../src/components/AlternativesForm';
 
 import Widget from '../src/components/Widget';
 
 import db from '../db.json';
+
+function ResultWidget({ results }) {
+  return (
+    <Widget>
+      <Widget.Header>
+        Resultado
+      </Widget.Header>
+
+      <Widget.Container>
+        <p>
+          {'Você acertou '}
+          {results.reduce((somatoriaAtual, resultAtual) => {
+            const isAcerto = resultAtual === true;
+            return isAcerto ? somatoriaAtual + 1 : somatoriaAtual;
+          }, 0)}
+          {' perguntas'}
+        </p>
+        <ul>
+          { results.map((result, index) => (
+            <li>
+              { index + 1 }
+              {' Resultado :'}
+              {result === true ? 'Acertou' : 'Errou'}
+            </li>
+          ))}
+        </ul>
+      </Widget.Container>
+    </Widget>
+  );
+}
 
 function LoadingWidget() {
   return (
@@ -38,9 +69,14 @@ function QuestionWidget({
   questionIndex,
   totalQuestions,
   onSubmit,
-  onChange,
+  addResult,
 }) {
+  const [selectedAlternative, setSelectedAlternative] = useState(undefined);
+  const [isQuestionSubmited, setIsQuestionSubmited] = useState(false);
   const questionId = `question__${questionIndex}`;
+  const isCorrect = selectedAlternative === question.answer;
+  const hasAlternativeSelected = selectedAlternative !== undefined;
+
   return (
     <Widget>
       <Widget.Header>
@@ -66,38 +102,56 @@ function QuestionWidget({
           {question.description}
         </p>
 
-        <form
+        <AlternativesForm
           onSubmit={(infosDoEvento) => {
             infosDoEvento.preventDefault();
-            onSubmit();
+            setIsQuestionSubmited(true);
+            setTimeout(() => {
+              addResult(isCorrect);
+              onSubmit();
+              setIsQuestionSubmited(false);
+              setSelectedAlternative(undefined);
+            }, 3 * 1000);
           }}
         >
           {question.alternatives.map((alternative, alternativeIndex) => {
             const alternativeId = `alternative__${alternativeIndex}`;
+            const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR';
+            const isSelected = selectedAlternative === alternativeIndex;
             return (
               <Widget.Topic
                 as="label"
                 htmlFor={alternativeId}
+                key={alternativeId}
+                data-selected={isSelected}
+                data-status={isQuestionSubmited && alternativeStatus}
               >
                 <input
+                  style={{ display: 'none' }}
                   id={alternativeId}
                   name={questionId}
                   type="radio"
-                  value={alternativeIndex}
-                  onChange={onChange}
+                  onChange={(infosDoEvento) => {
+                    infosDoEvento.preventDefault();
+                    setSelectedAlternative(alternativeIndex);
+                  }}
                 />
                 {alternative}
               </Widget.Topic>
             );
           })}
-
-          {/* <pre>
-            {JSON.stringify(question, null, 4)}
-          </pre> */}
-          <Button type="submit">
+          <Button type="submit" disabled={!hasAlternativeSelected}>
             Confirmar
           </Button>
-        </form>
+
+          { isQuestionSubmited && isCorrect && <p> Você acertou! </p> }
+          { isQuestionSubmited && !isCorrect
+            && (
+            <p>
+              Você errou!
+            </p>
+            )}
+        </AlternativesForm>
       </Widget.Container>
 
     </Widget>
@@ -112,38 +166,32 @@ const screenStates = {
 
 export default function QuizPage() {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
+  const [results, setResults] = React.useState([]);
   const totalQuestions = db.questions.length;
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
-  const [currentAnswer, setCurrentAnswer] = React.useState(-1);
-  const [totalCorrect, setTotalCorrect] = React.useState(0);
   const questionIndex = currentQuestion;
   const question = db.questions[questionIndex];
 
+  function addResult(result) {
+    setResults([
+      ...results,
+      result,
+    ]);
+  }
+
   React.useEffect(() => {
-    // fetch() ...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
     }, 1 * 1000);
-  // nasce === didMount
   }, []);
 
   function handleSubmitQuiz() {
-    if (currentAnswer === question.answer) {
-      console.log('aqui');
-      setTotalCorrect(totalCorrect + 1);
-    }
     const nextQuestion = questionIndex + 1;
     if (nextQuestion < totalQuestions) {
       setCurrentQuestion(nextQuestion);
     } else {
       setScreenState(screenStates.RESULT);
     }
-  }
-
-  function handleOptionChange(changeEvent) {
-    const option = Number(changeEvent.target.value);
-    console.log(typeof option);
-    setCurrentAnswer(option);
   }
 
   return (
@@ -156,19 +204,12 @@ export default function QuizPage() {
           questionIndex={questionIndex}
           totalQuestions={totalQuestions}
           onSubmit={handleSubmitQuiz}
-          onChange={handleOptionChange}
+          addResult={addResult}
         />
         )}
         {screenState === screenStates.LOADING && <LoadingWidget />}
 
-        {screenState === screenStates.RESULT
-          && (
-          <div>
-            Você acertou
-            {` ${totalCorrect} `}
-            questões, parabéns!
-          </div>
-          )}
+        {screenState === screenStates.RESULT && <ResultWidget results={results} />}
 
       </QuizContainer>
       <GitHubCorner projectUrl="https://github.com/italocarlo06" />
